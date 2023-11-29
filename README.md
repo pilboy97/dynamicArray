@@ -1,7 +1,7 @@
 # dynamicArray
 c based simple dynamic array
 
-"""
+```
 sample code
 
 int main() {
@@ -27,4 +27,4 @@ int main() {
 	printf("%d %d\n", arr.len, arr.cap);
 	return 0;
 }
-"""
+```
