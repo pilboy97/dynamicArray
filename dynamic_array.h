@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define da_new(T, SIZE) {malloc(sizeof(T) * SIZE), sizeof(T), SIZE, SIZE}
-#define da_append(arr, elem) _append(&arr, &elem)
+#define da_append(arr, elem) __append(&arr, &elem)
 
 typedef struct DynamicArray {
 	void* ptr;
@@ -14,7 +14,7 @@ typedef struct DynamicArray {
 	int cap;
 } DynamicArray;
 
-void _append(DynamicArray* arr, void* elem); // µ¿ÀûÇÒ´ç ¹è¿­¿¡ ¿ø¼Ò¸¦ Ãß°¡ÇÏ´Â ÇÔ¼ö (»ç¿ëÇÏÁö ¸» °Í)
-void fit(DynamicArray* arr); // µ¿Àû ¹è¿­ ±æÀÌ¿¡ ¹è¿­ »çÀÌÁî¸¦ ¸ÂÃß´Â ÇÔ¼ö
+void __append(DynamicArray* arr, void* elem); // ë™ì í• ë‹¹ ë°°ì—´ì— ì›ì†Œë¥¼ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ (ì‚¬ìš©í•˜ì§€ ë§ ê²ƒ)
+void da_fit(DynamicArray* arr); // ë™ì  ë°°ì—´ ê¸¸ì´ì— ë°°ì—´ ì‚¬ì´ì¦ˆë¥¼ ë§ì¶”ëŠ” í•¨ìˆ˜
 
 #endif
