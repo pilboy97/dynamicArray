@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define da_new(T, SIZE) {malloc(sizeof(T) * SIZE), sizeof(T), SIZE, SIZE}
 #define da_append(arr, elem) __append(&arr, &elem)
@@ -15,6 +16,8 @@ typedef struct DynamicArray {
 } DynamicArray;
 
 void __append(DynamicArray* arr, void* elem); // 동적할당 배열에 원소를 추가하는 함수 (사용하지 말 것)
-void da_fit(DynamicArray* arr); // 동적 배열 길이에 배열 사이즈를 맞추는 함수
+void  da_fit(DynamicArray* arr); // 동적 배열 길이에 배열 사이즈를 맞추는 함수
+
+void da_free(DynamicArray* arr);
 
 #endif
