@@ -1,32 +1,32 @@
 #include "dynamic_array.h"
 
-void _append(DynamicArray* arr, void* elem) {
-	while(arr->len + 1 > arr->cap) { // ¸¸¾à ¹è¿­ÀÌ °¡µæ Ã¡´Ù¸é
-		if(arr->cap == 0) { // ¸¸¾à ¹è¿­ÀÇ ±æÀÌ°¡ 0ÀÌ¶ó¸é
-			arr->cap = 1;	// ¹è¿­ÀÇ ±æÀÌ¸¦ 1·Î ¼³Á¤
+void __append(DynamicArray* arr, void* elem) {
+	while(arr->len + 1 > arr->cap) { // ë§Œì•½ ë°°ì—´ì´ ê°€ë“ ì°¼ë‹¤ë©´
+		if(arr->cap == 0) { // ë§Œì•½ ë°°ì—´ì˜ ê¸¸ì´ê°€ 0ì´ë¼ë©´
+			arr->cap = 1;	// ë°°ì—´ì˜ ê¸¸ì´ë¥¼ 1ë¡œ ì„¤ì •
 		} 
 		else {
-			arr->cap *= 2;	// ¹è¿­ÀÇ ±æÀÌ¸¦ 2¹è·Î ¹Ù²Þ
+			arr->cap *= 2;	// ë°°ì—´ì˜ ê¸¸ì´ë¥¼ 2ë°°ë¡œ ë°”ê¿ˆ
 		}
-		void* neo = malloc(arr->elemSize * arr->cap); // »õ ¹è¿­À» ÇÒ´çÇÔ
-		void* old = arr->ptr;	// ÀÌÀü ¹è¿­ Æ÷ÀÎÅÍ
+		void* neo = malloc(arr->elemSize * arr->cap); // ìƒˆ ë°°ì—´ì„ í• ë‹¹í•¨
+		void* old = arr->ptr;	// ì´ì „ ë°°ì—´ í¬ì¸í„°
 
-		memcpy(neo, arr->ptr, arr->len * arr->elemSize); // »õ ¹è¿­¿¡ ±âÁ¸ ³»¿ëÀ» º¹»çÇÔ
+		memcpy(neo, arr->ptr, arr->len * arr->elemSize); // ìƒˆ ë°°ì—´ì— ê¸°ì¡´ ë‚´ìš©ì„ ë³µì‚¬í•¨
 
-		arr->ptr = neo; // ¹è¿­ Æ÷ÀÎÅÍ °»½Å
-		free(old);	// ±âÁ¸ ¹è¿­ »èÁ¦
+		arr->ptr = neo; // ë°°ì—´ í¬ì¸í„° ê°±ì‹ 
+		free(old);	// ê¸°ì¡´ ë°°ì—´ ì‚­ì œ
 	}
 
-	memcpy((char*) arr->ptr + arr->len * arr->elemSize, elem, arr->elemSize); // ¹è¿­ÀÇ ¸¶Áö¸·¿¡ »õ ¿ø¼Ò Ãß°¡
-	arr->len += 1;	// ±æÀÌ Áõ°¡
+	memcpy((char*) arr->ptr + arr->len * arr->elemSize, elem, arr->elemSize); // ë°°ì—´ì˜ ë§ˆì§€ë§‰ì— ìƒˆ ì›ì†Œ ì¶”ê°€
+	arr->len += 1;	// ê¸¸ì´ ì¦ê°€
 }
-void fit(DynamicArray* arr) { // µ¿Àû ¹è¿­ ±æÀÌ¿¡ ¹è¿­ »çÀÌÁî¸¦ ¸ÂÃß´Â ÇÔ¼ö 
+void da_fit(DynamicArray* arr) { // ë™ì  ë°°ì—´ ê¸¸ì´ì— ë°°ì—´ ì‚¬ì´ì¦ˆë¥¼ ë§žì¶”ëŠ” í•¨ìˆ˜ 
 	arr->cap = arr->len;
-	void* neo = malloc(arr->elemSize * arr->cap); // »õ ¹è¿­À» ÇÒ´çÇÔ
-	void* old = arr->ptr;	// ÀÌÀü ¹è¿­ Æ÷ÀÎÅÍ
+	void* neo = malloc(arr->elemSize * arr->cap); // ìƒˆ ë°°ì—´ì„ í• ë‹¹í•¨
+	void* old = arr->ptr;	// ì´ì „ ë°°ì—´ í¬ì¸í„°
 
-	memcpy(neo, arr->ptr, arr->len * arr->elemSize); // »õ ¹è¿­¿¡ ±âÁ¸ ³»¿ëÀ» º¹»çÇÔ
+	memcpy(neo, arr->ptr, arr->len * arr->elemSize); // ìƒˆ ë°°ì—´ì— ê¸°ì¡´ ë‚´ìš©ì„ ë³µì‚¬í•¨
 
-	arr->ptr = neo; // ¹è¿­ Æ÷ÀÎÅÍ °»½Å
-	free(old);	// ±âÁ¸ ¹è¿­ »èÁ¦
+	arr->ptr = neo; // ë°°ì—´ í¬ì¸í„° ê°±ì‹ 
+	free(old);	// ê¸°ì¡´ ë°°ì—´ ì‚­ì œ
 }
